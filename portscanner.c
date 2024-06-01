@@ -56,10 +56,13 @@ int main() {
     // Enter the ending port
     printf("\nEnter ending port: ");
     scanf("%d", &port_end);
+    
     int number_of_ports = port_end - port_start + 1;
     printf("\nScanning ports on%15s",ip_address);
     printf("\n\nPlease wait...this may take some time...\n\n\n");
-    start = time(NULL); // Get the current time as the start time
+    
+    // Get the current time as the start time
+    start = time(NULL); 
     for (int port = port_start; port <= port_end; port++) {
         if (scan_port(ip_address, port)) {
             open_count++;
@@ -70,8 +73,12 @@ int main() {
             printf("port %d is closed\n",port);
         }
     }
-    end = time(NULL); // Get the current time as the end time
-    time_taken = difftime(end, start); // Calculate the time taken in seconds
+    
+    // Get the current time as the end time
+    end = time(NULL); 
+
+    // Calculate the time taken in seconds
+    time_taken = difftime(end, start); 
     printf("\nTotal open ports: %d\n", open_count);
     printf("\nTotal closed ports: %d\n", close_count);
     printf("\nTotal ports scanned: %d\n", open_count + close_count);
