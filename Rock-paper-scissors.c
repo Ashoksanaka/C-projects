@@ -1,23 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-#include<time.h>
+#include<time.h> //include time header file to compute random result for computer
+//function to check the winner
 int game(char you,char computer){
 	if(you == computer){
-        return 0;
+        return 0;   //return 0 in case of DRAW condition
     }
     else if((you == 'r' && computer == 's') || (you == 'p' && computer == 'r') || (you == 's' && computer == 'p')){
-        return 1;
+        return 1;                      //return 1 in case user won
     }
     else{
-        return -1;
+        return -1;  //return -1 in case computer won
     }
 }
 int main(){
 	int n,result;
 	char you,computer;
-	srand(time(NULL));
-	n = rand() % 100;
+	srand(time(NULL)); //choose the random number everytime
+	n = rand() % 100; //make the random number less than 100
 	if(n < 33){
 		computer = 'r';
 	}
@@ -28,7 +29,7 @@ int main(){
         computer = 's';
     }
 	printf("\n\n\t\tEnter your choice (r-rock/p-paper/s-scissor): ");
-	scanf(" %c",&you);
+	scanf(" %c",&you); //input from the user
 	result = game(you,computer);
 	if(result == 0){
 		printf("\n\n\t\tDRAW!\nYou choose:%c \n Computer choose:%c\n\n\t\t",you,computer);
