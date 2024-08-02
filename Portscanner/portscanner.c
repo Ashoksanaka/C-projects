@@ -49,9 +49,7 @@ void *thread_scan_port(void *args) {
 
     if (result) {
         printf("Port %d is open\n", thread_args->port);
-    } else {
-        printf("Port %d is closed\n", thread_args->port);
-    }
+    } 
 
     free(thread_args);
     pthread_exit(NULL);
@@ -120,8 +118,6 @@ int main(int argc, char *argv[]) {
     // Calculate the time taken in seconds
     time_taken = difftime(end, start);
     printf("\nTotal open ports: %d\n", open_count);
-    printf("Total closed ports: %d\n", close_count);
-    printf("Total ports scanned: %d\n", open_count + close_count);
     printf("\n%d ports are scanned in %.2f seconds\n\n", number_of_ports, time_taken);
 
     return 0;
