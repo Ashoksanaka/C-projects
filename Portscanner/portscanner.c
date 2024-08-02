@@ -57,24 +57,29 @@ void *thread_scan_port(void *args) {
     pthread_exit(NULL);
 }
 
-int main() {
-    char ip_address[16]; // Assuming IPv4 address, maximum length is 15 characters
-    int port_start, port_end;
+int main(int argc, char *argv[]) {
+    if (argc != 4) {
+        printf("Usage: %s <IP address> <starting port> <ending port>\n", argv[0]);
+        return 1;
+    }
+
+    char *ip_address = argv[1];
+    int port_start = atoi(argv[2]);
+    int port_end = atoi(argv[3]);
+
+    if (port_start < 1 || port_start > 65535 || port_end < 1 || port_end > 65535) {
+        printf("Invalid port range. Ports must be between 1 and 65535.\n");
+        return 1;
+    }
+
+    if (port_start > port_end) {
+        printf("Invalid port range. Starting port must be less than or equal to ending port.\n");
+        return 1;
+    }
+
     int open_count = 0, close_count = 0;
     time_t start, end;
     double time_taken;
-
-    // Enter the IP address
-    printf("\nEnter IP address: ");
-    scanf("%15s", ip_address); // Limit input to prevent buffer overflow
-
-    // Enter the starting port
-    printf("\nEnter starting port: ");
-    scanf("%d", &port_start);
-
-    // Enter the ending port
-    printf("\nEnter ending port: ");
-    scanf("%d", &port_end);
 
     int number_of_ports = port_end - port_start + 1;
     printf("\nScanning ports on %s\n", ip_address);
