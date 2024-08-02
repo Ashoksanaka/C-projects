@@ -12,3 +12,8 @@ A port scanner is a software tool used to scan a network or a host for open port
 
       ./"your output file name" <IP address> <Starting port> <Ending port>
       
+##### IF YOU ONLY HAVE DOMAIN NAME:
+      ping "Domain Name"
+           //or//
+      gcc Domain_2_IP.c -o "Your output file name"
+      ./"Your output file name"
