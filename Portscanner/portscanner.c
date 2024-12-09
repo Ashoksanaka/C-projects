@@ -8,6 +8,7 @@
 #include <time.h>
 
 #define MAX_THREADS 100
+int open_count = 0, close_count = 0;
 
 // Struct to pass arguments to the thread function
 struct ThreadArgs {
@@ -49,6 +50,7 @@ void *thread_scan_port(void *args) {
 
     if (result) {
         printf("Port %d is open\n", thread_args->port);
+	open_count++;
     } 
 
     free(thread_args);
@@ -75,7 +77,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int open_count = 0, close_count = 0;
     time_t start, end;
     double time_taken;
 
